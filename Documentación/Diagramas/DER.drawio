@@ -1,50 +1,71 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="28.2.8">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
   <diagram name="Página-1" id="aRmydUhqGW5MaQTKKHMQ">
-    <mxGraphModel dx="2160" dy="830" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="681" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-1" value="Sucursal" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-1" value="Sucursal" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="875" y="490" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-3" value="Sistema de Gestión de Créditos y Cobranzas&lt;br&gt;Una empresa financiera dedicada a la otorgación de créditos personales y empresariales&lt;br&gt;cuenta con varias sucursales distribuidas en distintas provincias del país, cada una con su&lt;br&gt;propio equipo de empleados especializados en atención al cliente, análisis crediticio,&lt;br&gt;otorgamiento y gestión de cobranza.&lt;div&gt;&lt;br&gt;El proceso comienza cuando un cliente realiza una solicitud de crédito en alguna de las&lt;br&gt;sucursales. En ella se consignan los datos personales, la situación económica, los ingresos&lt;br&gt;declarados, el destino del crédito y el monto solicitado.&lt;/div&gt;&lt;div&gt;&lt;br&gt;La empresa ofrece distintos productos financieros, como préstamos personales, hipotecarios,&lt;br&gt;empresariales, leasing o tarjetas corporativas. Cada uno posee su propia tasa base, requisitos&lt;br&gt;y límites crediticios. Las tasas vigentes y sus modificaciones se registran en un histórico de&lt;br&gt;tasas, permitiendo analizar la evolución de las políticas crediticias a lo largo del tiempo.&lt;br&gt;Cada solicitud es gestionada por un empleado de la sucursal y enviada al área de evaluación&lt;br&gt;crediticia, donde un analista asigna un puntaje de riesgo. A partir de esta evaluación, la&lt;br&gt;solicitud puede ser aprobada, rechazada o puesta en revisión. Adicionalmente, cada solicitud&lt;br&gt;tiene -al menos- un garante que respalden sus operaciones.&lt;/div&gt;&lt;div&gt;&lt;br&gt;Si una solicitud es aprobada, se genera un crédito activo, que detalla el monto otorgado (que&lt;br&gt;puede diferir del solicitado), la tasa de interés aplicada, el plazo de devolución, el producto&lt;br&gt;financiero asociado y las fechas de inicio y finalización. Cada crédito se compone de cuotas&lt;br&gt;mensuales, con su número, fecha de vencimiento, monto total y estado.&lt;br&gt;Los pagos se registran con fecha, monto, método de pago y días de demora. Cuando un pago&lt;br&gt;se realiza fuera del plazo, se aplica automáticamente una penalización por mora.&lt;/div&gt;&lt;div&gt;&lt;br&gt;En caso de incumplimiento o solicitud especial, el cliente puede optar por una refinanciación,&lt;br&gt;generando un nuevo crédito vinculado al anterior, conservando el historial de pagos y&lt;br&gt;penalizaciones.&lt;/div&gt;&lt;div&gt;&lt;br&gt;De manera adicional, el área de riesgos realiza evaluaciones periódicas de seguimiento para&lt;br&gt;revisar la evolución de los clientes activos, su comportamiento de pago y su nivel de&lt;br&gt;endeudamiento, almacenando los resultados de cada revisión.&lt;br&gt;La empresa lanza campañas promocionales para atraer nuevos clientes o incentivar la&lt;br&gt;renovación de créditos. Cada campaña puede estar dirigida a uno o varios productos&lt;br&gt;financieros y afectar a diferentes clientes, registrando la tasa promocional, el período de&lt;br&gt;vigencia y los resultados obtenidos, esto se logra midiendo si un cliente ingresó por medio de&lt;br&gt;alguna de las promociones.&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-3" value="Sistema de Gestión de Créditos y Cobranzas&lt;br&gt;Una empresa financiera dedicada a la otorgación de créditos personales y empresariales&lt;br&gt;cuenta con varias sucursales distribuidas en distintas provincias del país, cada una con su&lt;br&gt;propio equipo de empleados especializados en atención al cliente, análisis crediticio,&lt;br&gt;otorgamiento y gestión de cobranza.&lt;div&gt;&lt;br&gt;El proceso comienza cuando un cliente realiza una solicitud de crédito en alguna de las&lt;br&gt;sucursales. En ella se consignan los datos personales, la situación económica, los ingresos&lt;br&gt;declarados, el destino del crédito y el monto solicitado.&lt;/div&gt;&lt;div&gt;&lt;br&gt;La empresa ofrece distintos productos financieros, como préstamos personales, hipotecarios,&lt;br&gt;empresariales, leasing o tarjetas corporativas. Cada uno posee su propia tasa base, requisitos&lt;br&gt;y límites crediticios. Las tasas vigentes y sus modificaciones se registran en un histórico de&lt;br&gt;tasas, permitiendo analizar la evolución de las políticas crediticias a lo largo del tiempo.&lt;br&gt;Cada solicitud es gestionada por un empleado de la sucursal y enviada al área de evaluación&lt;br&gt;crediticia, donde un analista asigna un puntaje de riesgo. A partir de esta evaluación, la&lt;br&gt;solicitud puede ser aprobada, rechazada o puesta en revisión. Adicionalmente, cada solicitud&lt;br&gt;tiene -al menos- un garante que respalden sus operaciones.&lt;/div&gt;&lt;div&gt;&lt;br&gt;Si una solicitud es aprobada, se genera un crédito activo, que detalla el monto otorgado (que&lt;br&gt;puede diferir del solicitado), la tasa de interés aplicada, el plazo de devolución, el producto&lt;br&gt;financiero asociado y las fechas de inicio y finalización. Cada crédito se compone de cuotas&lt;br&gt;mensuales, con su número, fecha de vencimiento, monto total y estado.&lt;br&gt;Los pagos se registran con fecha, monto, método de pago y días de demora. Cuando un pago&lt;br&gt;se realiza fuera del plazo, se aplica automáticamente una penalización por mora.&lt;/div&gt;&lt;div&gt;&lt;br&gt;En caso de incumplimiento o solicitud especial, el cliente puede optar por una refinanciación,&lt;br&gt;generando un nuevo crédito vinculado al anterior, conservando el historial de pagos y&lt;br&gt;penalizaciones.&lt;/div&gt;&lt;div&gt;&lt;br&gt;De manera adicional, el área de riesgos realiza evaluaciones periódicas de seguimiento para&lt;br&gt;revisar la evolución de los clientes activos, su comportamiento de pago y su nivel de&lt;br&gt;endeudamiento, almacenando los resultados de cada revisión.&lt;br&gt;La empresa lanza campañas promocionales para atraer nuevos clientes o incentivar la&lt;br&gt;renovación de créditos. Cada campaña puede estar dirigida a uno o varios productos&lt;br&gt;financieros y afectar a diferentes clientes, registrando la tasa promocional, el período de&lt;br&gt;vigencia y los resultados obtenidos, esto se logra midiendo si un cliente ingresó por medio de&lt;br&gt;alguna de las promociones.&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;fillColor=#595548;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="1120" y="40" width="530" height="910" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-4" value="Empleado" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="950" y="270" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-4" value="Empleado" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="595" y="270" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-5" value="Cliente" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="495" y="270" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-5" value="Cliente" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="460" y="270" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-6" value="Solicitud_Credito" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="730" y="270" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-6" value="Solicitud" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="740" y="270" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-7" value="Garante_Solicitud" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="575" y="480" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-7" value="Garante_Solicitud" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="575" y="480" width="115" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-8" value="Garante" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-8" value="Garante" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="575" y="630" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-9" value="Evaluacion_Riesgo" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="210" y="270" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-9" value="Evaluacion_Riesgo" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="210" y="270" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-10" value="Cliente_Campaña" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="335" y="480" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-10" value="Cliente_Campaña" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="335" y="480" width="115" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-11" value="Campania_Promocional" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="320" y="640" width="130" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-11" value="Campania_Cliente" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="327.5" y="660" width="130" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-12" value="Campania_Producto" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="335" y="770" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-12" value="Campania_Producto" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="335" y="770" width="115" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-14" value="Credito" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="730" y="150" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-14" value="Credito" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="740" y="150" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-17" value="Cuota" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="730" y="40" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-17" value="Cuota" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="740" y="60" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-18" value="Pago" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="80" y="940" width="100" height="40" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-18" value="Pago" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="590" y="60" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="78J8nlt2P3I_7Iq5DA34-1" value="Equipo" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="940" y="370" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-1" value="Datos_Persona" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="335" y="210" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-2" value="Producto_Financiero" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="560" y="760" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-4" value="Historial_Tasas" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="750" y="760" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-5" value="Requisitos_Producto" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="560" y="860" width="125" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-6" value="Evaluacion_Seguimiento" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="332.5" y="340" width="157.5" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-7" value="Campania" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="347.5" y="560" width="102.5" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
