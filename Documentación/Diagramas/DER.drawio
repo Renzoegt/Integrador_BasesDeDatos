@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
   <diagram name="Página-1" id="aRmydUhqGW5MaQTKKHMQ">
-    <mxGraphModel dx="681" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="1388" dy="701" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -20,22 +20,16 @@
           <mxGeometry x="740" y="270" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="BukrY0oXFmm0rlmmMTHu-7" value="Garante_Solicitud" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
-          <mxGeometry x="575" y="480" width="115" height="50" as="geometry" />
+          <mxGeometry x="10" y="810" width="115" height="50" as="geometry" />
         </mxCell>
         <mxCell id="BukrY0oXFmm0rlmmMTHu-8" value="Garante" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
-          <mxGeometry x="575" y="630" width="100" height="40" as="geometry" />
+          <mxGeometry x="575" y="610" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="BukrY0oXFmm0rlmmMTHu-9" value="Evaluacion_Riesgo" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="210" y="270" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-10" value="Cliente_Campaña" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
-          <mxGeometry x="335" y="480" width="115" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-11" value="Campania_Cliente" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
-          <mxGeometry x="327.5" y="660" width="130" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="BukrY0oXFmm0rlmmMTHu-12" value="Campania_Producto" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
-          <mxGeometry x="335" y="770" width="115" height="50" as="geometry" />
+        <mxCell id="BukrY0oXFmm0rlmmMTHu-11" value="Campania_Cliente_Producto" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="10" y="750" width="172.5" height="40" as="geometry" />
         </mxCell>
         <mxCell id="BukrY0oXFmm0rlmmMTHu-14" value="Credito" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="740" y="150" width="100" height="40" as="geometry" />
@@ -49,22 +43,22 @@
         <mxCell id="78J8nlt2P3I_7Iq5DA34-1" value="Equipo" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="940" y="370" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="7abrIzW78O8Xuy4VhYlg-1" value="Datos_Persona" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-1" value="Datos_Persona" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="335" y="210" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="7abrIzW78O8Xuy4VhYlg-2" value="Producto_Financiero" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-2" value="Producto_Financiero" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="560" y="760" width="130" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="7abrIzW78O8Xuy4VhYlg-4" value="Historial_Tasas" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-4" value="Historial_Tasas" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="750" y="760" width="110" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="7abrIzW78O8Xuy4VhYlg-5" value="Requisitos_Producto" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="560" y="860" width="125" height="50" as="geometry" />
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-5" value="Requisitos_Producto" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="10" y="930" width="125" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="7abrIzW78O8Xuy4VhYlg-6" value="Evaluacion_Seguimiento" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="332.5" y="340" width="157.5" height="50" as="geometry" />
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-6" value="Evaluacion_Seguimiento" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="220" y="360" width="157.5" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="7abrIzW78O8Xuy4VhYlg-7" value="Campania" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+        <mxCell id="7abrIzW78O8Xuy4VhYlg-7" value="Campania" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="347.5" y="560" width="102.5" height="40" as="geometry" />
         </mxCell>
       </root>
