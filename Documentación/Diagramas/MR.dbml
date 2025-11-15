@@ -28,6 +28,7 @@ Table Tipo_Doc {
 
 Table Empleado {
   empleado_id integer [pk]
+  sucursal_id integer [ref: > Sucursal.sucursal_id]
   cargo_id integer [ref: > Cargo.cargo_id]
   persona_id integer [unique, ref: - Persona.persona_id]
 }
@@ -58,4 +59,63 @@ Table Garante {
   garante_id integer [pk]
   relacion_cliente varchar(255)
   persona_id integer [unique, ref: - Persona.persona_id]
+}
+
+Table Sucursal {
+  sucursal_id integer [pk]
+  nombre varchar(20)
+  email varchar(40)
+  telefono varchar(20)
+  direccion varchar(255)
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
+}
+
+Table Solicitud {
+  solicitud_id integer [pk]
+  motivo varchar(50)
+  monto integer
+  estado varchar(20)
+  cliente_id integer [ref: > Cliente.cliente_id]
+  producto_finan_id integer [ref: > Producto_Finan.producto_finan_id]
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
+  checks {
+    `estado IN ('aprobada', 'rechazada', 'revision')` [name: 'check_estado']
+  }
+}
+
+Table Producto_Finan {
+  producto_finan_id integer [pk]
+  limite_cred integer
+  nombre varchar(20)
+  tasa_base decimal(4, 2)
+  requisitos_prod_id integer [ref: > Requisitos_Prod.requisitos_prod_id]
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
+}
+
+Table Requisitos_Prod {
+  requisitos_prod_id integer [pk]
+  cuenta boolean
+  hist_positivo boolean
+  tiene_garante boolean
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
 }
