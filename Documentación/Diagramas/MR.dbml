@@ -1,0 +1,61 @@
+Table Persona {
+  persona_id integer [pk, unique]
+  nombre varchar(30)
+  apellido varchar(30)
+  documento integer
+  tipo_doc_id integer [ref: > Tipo_Doc.tipo_doc_id]
+  telefono varchar(20)
+  email varchar(40)
+  es_juridica boolean
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
+}
+
+Table Tipo_Doc {
+  tipo_doc_id integer [pk]
+  nombre varchar(255)
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
+}
+
+Table Empleado {
+  empleado_id integer [pk]
+  cargo_id integer [ref: > Cargo.cargo_id]
+  persona_id integer [unique, ref: - Persona.persona_id]
+}
+
+Table Cargo {
+  cargo_id integer [pk]
+  nombre varchar(20)
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
+}
+
+Table Cliente {
+  cliente_id integer [pk]
+  sit_econ varchar(20)
+  ingresos_dec integer
+  persona_id integer [unique, ref: - Persona.persona_id]
+  checks {
+    `sit_econ IN ('mala', 'regular', 'buena')` [name: 'check_sit_econ']
+    `ingresos_dec >= 0` [name: 'check_ingresos_dec']
+  }
+}
+
+Table Garante {
+  garante_id integer [pk]
+  relacion_cliente varchar(255)
+  persona_id integer [unique, ref: - Persona.persona_id]
+}
