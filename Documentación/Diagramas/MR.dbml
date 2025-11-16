@@ -1,8 +1,9 @@
 Table Persona {
-  persona_id integer [pk, unique, increment]
+  persona_id integer [pk, increment]
   nombre varchar(30)
   apellido varchar(30)
   documento integer
+  direccion varchar(255)
   tipo_doc_id integer [ref: > Tipo_Doc.tipo_doc_id]
   telefono varchar(20)
   email varchar(40)
@@ -16,7 +17,7 @@ Table Persona {
 }
 
 Table Tipo_Doc {
-  tipo_doc_id integer [pk, unique, increment]
+  tipo_doc_id integer [pk, increment]
   nombre varchar(255)
   habilitado boolean [default: 'TRUE']
   fecha_alta date [default: 'GETDATE()']
@@ -27,14 +28,14 @@ Table Tipo_Doc {
 }
 
 Table Empleado {
-  empleado_id integer [pk, unique, increment]
+  empleado_id integer [pk, increment]
   sucursal_id integer [ref: > Sucursal.sucursal_id]
   cargo_id integer [ref: > Cargo.cargo_id]
   persona_id integer [unique, ref: - Persona.persona_id]
 }
 
 Table Cargo {
-  cargo_id integer [pk, unique, increment]
+  cargo_id integer [pk, increment]
   nombre varchar(20)
   habilitado boolean [default: 'TRUE']
   fecha_alta date [default: 'GETDATE()']
@@ -45,24 +46,36 @@ Table Cargo {
 }
 
 Table Cliente {
-  cliente_id integer [pk, unique, increment]
-  sit_econ varchar(20)
+  cliente_id integer [pk, increment]
+  sit_econ_id integer [ref: > Situacion_Econ.situacion_econ_id]
   ingresos_dec integer
   persona_id integer [unique, ref: - Persona.persona_id]
   checks {
-    `sit_econ IN ('malo', 'regular', 'bueno')` [name: 'check_sit_econ']
     `ingresos_dec >= 0` [name: 'check_ingresos_dec']
   }
 }
 
+Table Situacion_Econ {
+  situacion_econ_id integer [pk, increment]
+  nombre varchar(20)
+  ingreso_min integer
+  ingreso_max integer
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
+}
+
 Table Garante {
-  garante_id integer [pk, unique, increment]
+  garante_id integer [pk, increment]
   relacion_cliente varchar(255)
   persona_id integer [unique, ref: - Persona.persona_id]
 }
 
 Table Sucursal {
-  sucursal_id integer [pk, unique, increment]
+  sucursal_id integer [pk, increment]
   nombre varchar(20)
   email varchar(40)
   telefono varchar(20)
@@ -76,7 +89,7 @@ Table Sucursal {
 }
 
 Table Solicitud {
-  solicitud_id integer [pk, unique, increment]
+  solicitud_id integer [pk, increment]
   motivo varchar(50)
   monto integer
   estado varchar(20)
@@ -95,13 +108,13 @@ Table Solicitud {
 }
 
 Table Solicitud_Garante {
-  solicitud_garante_id integer [pk, unique, increment]
+  solicitud_garante_id integer [pk, increment]
   solicitud_id integer [ref: > Solicitud.solicitud_id]
   garante_id integer [ref: > Garante.garante_id]
 }
 
 Table Producto_Finan {
-  producto_finan_id integer [pk, unique, increment]
+  producto_finan_id integer [pk, increment]
   limite_cred integer
   nombre varchar(20)
   tasa_base decimal(4, 2)
@@ -115,7 +128,7 @@ Table Producto_Finan {
 }
 
 Table Hist_Tasas {
-  hist_tasas_id integer [pk, unique, increment]
+  hist_tasas_id integer [pk, increment]
   producto_finan_id integer [ref: > Producto_Finan.producto_finan_id]
   tasa_vigente decimal(4, 2)
   habilitado boolean [default: 'TRUE']
@@ -127,7 +140,7 @@ Table Hist_Tasas {
 }
 
 Table Requisitos_Prod {
-  requisitos_prod_id integer [pk, unique, increment]
+  requisitos_prod_id integer [pk, increment]
   cuenta boolean
   hist_positivo boolean
   tiene_garante boolean
@@ -140,11 +153,11 @@ Table Requisitos_Prod {
 }
 
 Table Credito {
-  credito_id integer [pk, unique, increment]
+  credito_id integer [pk, increment]
   monto_ot integer
   tasa_int decimal(4, 2)
   fecha_fin date
-  plazo datetime
+  plazo_dias integer
   credito_refinanciado_id integer [ref: - Credito.credito_id]
   habilitado boolean [default: 'TRUE']
   fecha_alta date [default: 'GETDATE()']
@@ -155,7 +168,7 @@ Table Credito {
 }
 
 Table Evaluacion_Riesgo {
-  evaluacion_riesgo_id integer [pk, unique, increment]
+  evaluacion_riesgo_id integer [pk, increment]
   puntaje_riesgo integer
   estado varchar(20)
   solicitud_id integer [ref: - Solicitud.solicitud_id]
@@ -168,7 +181,7 @@ Table Evaluacion_Riesgo {
 }
 
 Table Evaluacion_Seg {
-  evaluacion_seg_id integer [pk, unique, increment]
+  evaluacion_seg_id integer [pk, increment]
   comportamiento_pago varchar(20)
   nivel_endeudamiento integer
   cliente_id integer [ref: > Cliente.cliente_id]
@@ -181,12 +194,12 @@ Table Evaluacion_Seg {
 }
 
 Table Cuota {
-  cuota_id integer [pk, unique, increment]
+  cuota_id integer [pk, increment]
   credito_id integer [ref: > Credito.credito_id]
   nro_cuota integer
   monto_total integer
   estado varchar(20)
-  fecha_vencimiento date
+  fecha_venc date
   habilitado boolean [default: 'TRUE']
   fecha_alta date [default: 'GETDATE()']
   fecha_baja date
@@ -199,7 +212,7 @@ Table Cuota {
 }
 
 Table Pago {
-  pago_id integer [pk, unique, increment]
+  pago_id integer [pk, increment]
   cuota_id integer [ref: - Cuota.cuota_id]
   dias_demora integer
   pena_mora decimal(9, 2)
@@ -214,7 +227,7 @@ Table Pago {
 }
 
 Table Metodo_Pago {
-  metodo_pago_id integer [pk, unique, increment]
+  metodo_pago_id integer [pk, increment]
   nombre varchar(30)
   habilitado boolean [default: 'TRUE']
   fecha_alta date [default: 'GETDATE()']
@@ -225,9 +238,9 @@ Table Metodo_Pago {
 }
 
 Table Campania_Prom {
-  campania_prom_id integer [pk, unique, increment]
+  campania_prom_id integer [pk, increment]
   tasa_prom decimal(4, 2)
-  vigencia datetime
+  vigencia date
   habilitado boolean [default: 'TRUE']
   fecha_alta date [default: 'GETDATE()']
   fecha_baja date
@@ -237,13 +250,13 @@ Table Campania_Prom {
 }
 
 Table Campania_Cliente {
-  campania_cliente_id integer [pk, unique, increment]
+  campania_cliente_id integer [pk, increment]
   campana_prom_id integer [ref: > Campania_Prom.campania_prom_id]
   cliente_id integer [ref: > Cliente.cliente_id]
 }
 
 Table Campania_Producto {
-  campania_producto_id integer [pk, unique, increment]
+  campania_producto_id integer [pk, increment]
   campania_prom_id integer [ref: > Campania_Prom.campania_prom_id]
   producto_finan_id integer [ref: > Producto_Finan.producto_finan_id]
 }

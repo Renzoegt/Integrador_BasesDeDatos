@@ -1,8 +1,9 @@
 CREATE TABLE `Persona` (
-  `persona_id` integer UNIQUE AUTO_INCREMENT,
+  `persona_id` integer PRIMARY KEY AUTO_INCREMENT,
   `nombre` varchar(30),
   `apellido` varchar(30),
   `documento` integer,
+  `direccion` varchar(255),
   `tipo_doc_id` integer,
   `telefono` varchar(20),
   `email` varchar(40),
@@ -12,68 +13,67 @@ CREATE TABLE `Persona` (
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (persona_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Tipo_Doc` (
-  `tipo_doc_id` integer UNIQUE AUTO_INCREMENT,
+  `tipo_doc_id` integer PRIMARY KEY AUTO_INCREMENT,
   `nombre` varchar(255),
   `habilitado` boolean DEFAULT TRUE,
   `fecha_alta` date DEFAULT CURDATE(),
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (tipo_doc_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Empleado` (
-  `empleado_id` integer UNIQUE AUTO_INCREMENT,
+  `empleado_id` integer PRIMARY KEY AUTO_INCREMENT,
   `sucursal_id` integer,
   `cargo_id` integer,
-  `persona_id` integer UNIQUE,
-  PRIMARY KEY (empleado_id)
+  `persona_id` integer UNIQUE
 );
 
 CREATE TABLE `Cargo` (
-  `cargo_id` integer UNIQUE AUTO_INCREMENT,
+  `cargo_id` integer PRIMARY KEY AUTO_INCREMENT,
   `nombre` varchar(20),
   `habilitado` boolean DEFAULT TRUE,
   `fecha_alta` date DEFAULT CURDATE(),
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (cargo_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Cliente` (
-  `cliente_id` integer UNIQUE AUTO_INCREMENT,
-  `sit_econ` integer,
+  `cliente_id` integer PRIMARY KEY AUTO_INCREMENT,
+  `sit_econ_id` integer,
   `ingresos_dec` integer,
   `persona_id` integer UNIQUE,
-  CONSTRAINT `check_ingresos_dec` CHECK (ingresos_dec >= 0),
-  PRIMARY KEY (cliente_id)
+  CONSTRAINT `check_ingresos_dec` CHECK (ingresos_dec >= 0)
 );
 
 CREATE TABLE `Situacion_Econ` (
-  `situacion_econ_id` integer UNIQUE AUTO_INCREMENT,
+  `situacion_econ_id` integer PRIMARY KEY AUTO_INCREMENT,
   `nombre` varchar(20),
   `ingreso_min` integer,
   `ingreso_max` integer,
-  PRIMARY KEY (situacion_econ_id)
+  `habilitado` boolean DEFAULT TRUE,
+  `fecha_alta` date DEFAULT CURDATE(),
+  `fecha_baja` date,
+  `fecha_mod` date,
+  `usuario_alta` varchar(30),
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Garante` (
-  `garante_id` integer UNIQUE AUTO_INCREMENT,
+  `garante_id` integer PRIMARY KEY AUTO_INCREMENT,
   `relacion_cliente` varchar(255),
-  `persona_id` integer UNIQUE,
-  PRIMARY KEY (garante_id)
+  `persona_id` integer UNIQUE
 );
 
 CREATE TABLE `Sucursal` (
-  `sucursal_id` integer UNIQUE AUTO_INCREMENT,
+  `sucursal_id` integer PRIMARY KEY AUTO_INCREMENT,
   `nombre` varchar(20),
   `email` varchar(40),
   `telefono` varchar(20),
@@ -83,12 +83,11 @@ CREATE TABLE `Sucursal` (
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (sucursal_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Solicitud` (
-  `solicitud_id` integer UNIQUE AUTO_INCREMENT,
+  `solicitud_id` integer PRIMARY KEY AUTO_INCREMENT,
   `motivo` varchar(50),
   `monto` integer,
   `estado` varchar(20),
@@ -101,19 +100,17 @@ CREATE TABLE `Solicitud` (
   `fecha_mod` date,
   `usuario_alta` varchar(30),
   `usuario_mod` varchar(30),
-  CONSTRAINT `check_estado` CHECK (estado IN ('aprobado', 'rechazado', 'revision')),
-  PRIMARY KEY (solicitud_id)
+  CONSTRAINT `check_estado` CHECK (estado IN ('aprobado', 'rechazado', 'revision'))
 );
 
 CREATE TABLE `Solicitud_Garante` (
-  `solicitud_garante_id` integer UNIQUE AUTO_INCREMENT,
+  `solicitud_garante_id` integer PRIMARY KEY AUTO_INCREMENT,
   `solicitud_id` integer,
-  `garante_id` integer,
-  PRIMARY KEY (solicitud_garante_id)
+  `garante_id` integer
 );
 
 CREATE TABLE `Producto_Finan` (
-  `producto_finan_id` integer UNIQUE AUTO_INCREMENT,
+  `producto_finan_id` integer PRIMARY KEY AUTO_INCREMENT,
   `limite_cred` integer,
   `nombre` varchar(20),
   `tasa_base` decimal(4,2),
@@ -123,12 +120,11 @@ CREATE TABLE `Producto_Finan` (
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (producto_finan_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Hist_Tasas` (
-  `hist_tasas_id` integer UNIQUE AUTO_INCREMENT,
+  `hist_tasas_id` integer PRIMARY KEY AUTO_INCREMENT,
   `producto_finan_id` integer,
   `tasa_vigente` decimal(4,2),
   `habilitado` boolean DEFAULT TRUE,
@@ -136,12 +132,11 @@ CREATE TABLE `Hist_Tasas` (
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (hist_tasas_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Requisitos_Prod` (
-  `requisitos_prod_id` integer UNIQUE AUTO_INCREMENT,
+  `requisitos_prod_id` integer PRIMARY KEY AUTO_INCREMENT,
   `cuenta` boolean,
   `hist_positivo` boolean,
   `tiene_garante` boolean,
@@ -150,28 +145,26 @@ CREATE TABLE `Requisitos_Prod` (
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (requisitos_prod_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Credito` (
-  `credito_id` integer UNIQUE AUTO_INCREMENT,
+  `credito_id` integer PRIMARY KEY AUTO_INCREMENT,
   `monto_ot` integer,
   `tasa_int` decimal(4,2),
   `fecha_fin` date,
-  `plazo` datetime,
+  `plazo_dias` integer,
   `credito_refinanciado_id` integer,
   `habilitado` boolean DEFAULT TRUE,
   `fecha_alta` date DEFAULT CURDATE(),
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (credito_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Evaluacion_Riesgo` (
-  `evaluacion_riesgo_id` integer UNIQUE AUTO_INCREMENT,
+  `evaluacion_riesgo_id` integer PRIMARY KEY AUTO_INCREMENT,
   `puntaje_riesgo` integer,
   `estado` varchar(20),
   `solicitud_id` integer,
@@ -180,12 +173,11 @@ CREATE TABLE `Evaluacion_Riesgo` (
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (evaluacion_riesgo_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Evaluacion_Seg` (
-  `evaluacion_seg_id` integer UNIQUE AUTO_INCREMENT,
+  `evaluacion_seg_id` integer PRIMARY KEY AUTO_INCREMENT,
   `comportamiento_pago` varchar(20),
   `nivel_endeudamiento` integer,
   `cliente_id` integer,
@@ -194,12 +186,11 @@ CREATE TABLE `Evaluacion_Seg` (
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (evaluacion_seg_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Cuota` (
-  `cuota_id` integer UNIQUE AUTO_INCREMENT,
+  `cuota_id` integer PRIMARY KEY AUTO_INCREMENT,
   `credito_id` integer,
   `nro_cuota` integer,
   `monto_total` integer,
@@ -211,12 +202,11 @@ CREATE TABLE `Cuota` (
   `fecha_mod` date,
   `usuario_alta` varchar(30),
   `usuario_mod` varchar(30),
-  CONSTRAINT `check_estado` CHECK (estado IN ('pendiente', 'pagado')),
-  PRIMARY KEY (cuota_id)
+  CONSTRAINT `check_estado` CHECK (estado IN ('pendiente', 'pagado'))
 );
 
 CREATE TABLE `Pago` (
-  `pago_id` integer UNIQUE AUTO_INCREMENT,
+  `pago_id` integer PRIMARY KEY AUTO_INCREMENT,
   `cuota_id` integer,
   `dias_demora` integer,
   `pena_mora` decimal(9,2),
@@ -227,47 +217,42 @@ CREATE TABLE `Pago` (
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (pago_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Metodo_Pago` (
-  `metodo_pago_id` integer UNIQUE AUTO_INCREMENT,
+  `metodo_pago_id` integer PRIMARY KEY AUTO_INCREMENT,
   `nombre` varchar(30),
   `habilitado` boolean DEFAULT TRUE,
   `fecha_alta` date DEFAULT CURDATE(),
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (metodo_pago_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Campania_Prom` (
-  `campania_prom_id` integer UNIQUE AUTO_INCREMENT,
+  `campania_prom_id` integer PRIMARY KEY AUTO_INCREMENT,
   `tasa_prom` decimal(4,2),
-  `vigencia` datetime,
+  `vigencia` date,
   `habilitado` boolean DEFAULT TRUE,
   `fecha_alta` date DEFAULT CURDATE(),
   `fecha_baja` date,
   `fecha_mod` date,
   `usuario_alta` varchar(30),
-  `usuario_mod` varchar(30),
-  PRIMARY KEY (campania_prom_id)
+  `usuario_mod` varchar(30)
 );
 
 CREATE TABLE `Campania_Cliente` (
-  `campania_cliente_id` integer UNIQUE AUTO_INCREMENT,
+  `campania_cliente_id` integer PRIMARY KEY AUTO_INCREMENT,
   `campana_prom_id` integer,
-  `cliente_id` integer,
-  PRIMARY KEY (campania_cliente_id)
+  `cliente_id` integer
 );
 
 CREATE TABLE `Campania_Producto` (
-  `campania_producto_id` integer UNIQUE AUTO_INCREMENT,
+  `campania_producto_id` integer PRIMARY KEY AUTO_INCREMENT,
   `campania_prom_id` integer,
-  `producto_finan_id` integer,
-  PRIMARY KEY (campania_producto_id)
+  `producto_finan_id` integer
 );
 
 ALTER TABLE `Persona` ADD FOREIGN KEY (`tipo_doc_id`) REFERENCES `Tipo_Doc` (`tipo_doc_id`);
@@ -278,7 +263,7 @@ ALTER TABLE `Empleado` ADD FOREIGN KEY (`cargo_id`) REFERENCES `Cargo` (`cargo_i
 
 ALTER TABLE `Empleado` ADD FOREIGN KEY (`persona_id`) REFERENCES `Persona` (`persona_id`);
 
-ALTER TABLE `Cliente` ADD FOREIGN KEY (`sit_econ`) REFERENCES `Situacion_Econ` (`situacion_econ_id`);
+ALTER TABLE `Cliente` ADD FOREIGN KEY (`sit_econ_id`) REFERENCES `Situacion_Econ` (`situacion_econ_id`);
 
 ALTER TABLE `Cliente` ADD FOREIGN KEY (`persona_id`) REFERENCES `Persona` (`persona_id`);
 
