@@ -1,3 +1,7 @@
+CREATE DATABASE creditos;
+
+USE creditos;
+
 CREATE TABLE `Persona` (
   `persona_id` integer PRIMARY KEY AUTO_INCREMENT,
   `nombre` varchar(30),
