@@ -74,24 +74,167 @@ ON Cuota (fecha_venc);
 CREATE INDEX idx_pago_metodo_fecha
 ON Pago (metodo_pago_id, fecha_alta);
 
+-- 1: Lista nombre, email y tipo de documento
+SELECT 
+    c.nombre AS nombre,
+    c.email AS correo,
+    c.documento AS numero_documento
+FROM Cliente c
+WHERE c.email IS NOT NULL
+ORDER BY c.nombre ASC;
+
+-- 2: Filtro avanzado con ingresos, fecha y email válido usando funciones
+SELECT 
+    c.*, 
+    YEAR(c.fecha_alta) AS anio_alta,
+    IFNULL(c.telefono, 'Sin teléfono') AS telefono_normalizado
+FROM Cliente c
+WHERE c.ingresos_dec BETWEEN 60000 AND 150000
+    AND c.habilitado = TRUE
+    AND c.email LIKE '%@%'
+    AND (c.fecha_baja IS NULL OR YEAR(c.fecha_baja) >= 2024);
+
+
+-- 3: Top 3 clientes con mayor tasa de interés aplicada
+SELECT 
+    c.nombre,                                                     
+    c.apellido,                                                   
+    s.solicitud_id,                                               
+    p.nombre AS producto,                                         
+    p.tasa_base AS tasa_interes                                   
+FROM Cliente c
+JOIN Solicitud s ON c.cliente_id = s.cliente_id                  
+JOIN Producto_Finan p ON p.producto_finan_id = s.producto_finan_id 
+ORDER BY p.tasa_base DESC                                         
+LIMIT 3;                                                          
+
+
+-- 4: Solicitudes aprobadas, con cálculo de monto final aplicando tasa base
+SELECT 
+    c.nombre,                                                     
+    c.apellido,                                                  
+    s.solicitud_id,
+    s.monto,
+    s.estado,
+    p.nombre AS producto,                                        
+    p.tasa_base,
+    ROUND(s.monto * (1 + p.tasa_base / 100), 2) AS monto_con_interes 
+FROM Cliente c
+JOIN Solicitud s ON c.cliente_id = s.cliente_id
+JOIN Producto_Finan p ON p.producto_finan_id = s.producto_finan_id
+WHERE s.estado = 'aprobado'                                      
+    AND s.monto > (SELECT AVG(monto) FROM Solicitud);              
+
+
+-- 5: Unión de clientes y garantes, con validación de emails y clasificación por tipo
+SELECT 
+    c.nombre,
+    c.apellido,
+    c.documento,
+    'CLIENTE' AS tipo_persona,
+    IF(c.email LIKE '%@%', c.email, 'email_invalido') AS email_validado 
+FROM Cliente c
+WHERE c.habilitado = TRUE
+    AND c.documento IS NOT NULL
+
+UNION
+
+SELECT 
+    g.nombre,
+    g.apellido,
+    g.documento,
+    'GARANTE' AS tipo_persona,
+    IF(g.email LIKE '%@%', g.email, 'email_invalido')
+FROM Garante g
+WHERE g.habilitado = TRUE
+ORDER BY apellido ASC;                                           
+
+
+-- 6: Clientes que han utilizado un método de pago específico
+SELECT 
+    c.nombre,
+    c.apellido,
+    c.documento,
+    mp.nombre AS metodo_pago
+FROM Cliente c
+JOIN Solicitud s ON s.cliente_id = c.cliente_id
+JOIN Credito cr ON cr.credito_id = s.credito_id
+JOIN Cuota cu ON cu.credito_id = cr.credito_id
+JOIN Pago p ON p.cuota_id = cu.cuota_id
+JOIN Metodo_Pago mp ON mp.metodo_pago_id = p.metodo_pago_id
+WHERE mp.nombre = 'efectivo';
+
+-- 7: Clientes que NO son garantes y además ganan más del promedio
+SELECT 
+    c.nombre, 
+    c.apellido, 
+    c.documento
+FROM Cliente c
+WHERE c.documento NOT IN (
+        SELECT documento
+        FROM Garante
+    )
+    AND c.ingresos_dec > (SELECT AVG(ingresos_dec) FROM Cliente);  
+
+
+-- 8: Clientes con mayor puntaje de riesgo según evaluación
+SELECT 
+    c.nombre,                                                   
+    c.apellido,                                                  
+    c.documento,                                                 
+    er.puntaje_riesgo                                            
+FROM Cliente c
+JOIN Solicitud s ON s.cliente_id = c.cliente_id                  
+JOIN Evaluacion_Riesgo er ON er.solicitud_id = s.solicitud_id    
+WHERE er.puntaje_riesgo IS NOT NULL                          
+ORDER BY er.puntaje_riesgo DESC;                                 
+
+-- 9: Clientes con tipo DNI, validando también que no tengan fecha_baja
+SELECT nombre, apellido, documento
+FROM Cliente
+WHERE tipo_doc_id = (
+        SELECT tipo_doc_id
+        FROM Tipo_Doc
+        WHERE nombre = 'DNI'
+    )
+    AND fecha_baja IS NULL;                                        
+
+
+-- 10: Ingreso promedio por tipo de documento, filtrando por ingresos mínimos
+SELECT 
+    td.nombre AS tipo_documento,
+    AVG(sub.ingresos_dec) AS ingreso_promedio,
+    COUNT(*) AS cantidad_clientes
+FROM (
+        SELECT tipo_doc_id, ingresos_dec
+        FROM Cliente
+        WHERE ingresos_dec > 80000
+    ) AS sub
+JOIN Tipo_Doc td ON td.tipo_doc_id = sub.tipo_doc_id
+GROUP BY td.nombre
+HAVING ingreso_promedio > 90000;
+
 -- 11 Subconsulta (Muestra cantidad de créditos aprobados) 
+
 SELECT c.cliente_id, c.nombre, c.apellido, (
     SELECT COUNT(*) FROM Solicitud s
     WHERE s.cliente_id = c.cliente_id
-      AND s.estado = 'aprobado'
-      AND s.credito_id IS NOT NULL
-  ) AS cantidad_creditos_aprobados FROM Cliente c;
+    AND s.estado = 'aprobado'
+    AND s.credito_id IS NOT NULL
+    ) AS cantidad_creditos_aprobados FROM Cliente c;
 
--- 12 Subconsulta (Clientes que solicitaron créditos por encima del promedio) CORREGIDO
+-- 12 Subconsulta (Clientes que solicitaron créditos por encima del promedio) 
+
 SELECT c.cliente_id, c.nombre,
     c.apellido,
     s.monto
 FROM Solicitud s
 JOIN Cliente c ON s.cliente_id = c.cliente_id
 WHERE s.monto >
-      (SELECT AVG(monto) FROM Solicitud);
+    (SELECT AVG(monto) FROM Solicitud);
 
--- 13 CTE (cuantas solicitudes tiene cada cliente) CORREGIDO
+-- 13 CTE (cuantas solicitudes tiene cada cliente) 
+
 WITH CantSolicitudes AS (
     SELECT 
         cliente_id,
@@ -110,6 +253,7 @@ JOIN Cliente c ON cs.cliente_id = c.cliente_id
 ORDER BY cs.total_solicitudes DESC;
 
 -- 14 CTE (Obtiene todas las cuotas vencidas y luego en la consulta principal mostrarlas ordenadas.)
+
 WITH cuotas_vencidas AS (
     SELECT cuota_id, credito_id, nro_cuota, monto_total, fecha_venc
     FROM cuota
@@ -120,6 +264,7 @@ FROM cuotas_vencidas
 ORDER BY fecha_venc DESC;
 
 -- 15 HAVING + GROUP BY (Clientes que tienen más de 2 créditos activos y cuya suma total prestada supera $200.000)
+
 SELECT 
     cl.cliente_id,
     cl.nombre,
@@ -132,9 +277,10 @@ JOIN Cliente cl ON cl.cliente_id = s.cliente_id
 WHERE cr.habilitado = 1   
 GROUP BY cl.cliente_id, cl.nombre, cl.apellido
 HAVING COUNT(cr.credito_id) > 2
-   AND SUM(cr.monto_ot) > 200000;
+    AND SUM(cr.monto_ot) > 200000;
 
 -- 16 Ventanas (Ranking de clientes con mayor monto de crédito activo)
+
 SELECT
     cl.cliente_id,
     CONCAT(cl.nombre, ' ', cl.apellido) AS cliente,
@@ -157,7 +303,7 @@ WITH max_por_cliente AS (
     JOIN Solicitud s ON s.cliente_id = cl.cliente_id
     JOIN Credito cr ON cr.credito_id = s.credito_id
     WHERE cr.habilitado = TRUE
-      AND s.habilitado = TRUE
+        AND s.habilitado = TRUE
     GROUP BY cl.cliente_id, cl.nombre, cl.apellido
 ),
 ranking_creditos AS (
