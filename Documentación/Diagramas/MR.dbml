@@ -1,21 +1,3 @@
-Table Persona {
-  persona_id integer [pk, increment]
-  nombre varchar(30)
-  apellido varchar(30)
-  documento integer
-  direccion varchar(255)
-  tipo_doc_id integer [ref: > Tipo_Doc.tipo_doc_id]
-  telefono varchar(20)
-  email varchar(40)
-  es_juridica boolean
-  habilitado boolean [default: 'TRUE']
-  fecha_alta date [default: 'GETDATE()']
-  fecha_baja date
-  fecha_mod date
-  usuario_alta varchar(30)
-  usuario_mod varchar(30)
-}
-
 Table Tipo_Doc {
   tipo_doc_id integer [pk, increment]
   nombre varchar(255)
@@ -31,7 +13,20 @@ Table Empleado {
   empleado_id integer [pk, increment]
   sucursal_id integer [ref: > Sucursal.sucursal_id]
   cargo_id integer [ref: > Cargo.cargo_id]
-  persona_id integer [unique, ref: - Persona.persona_id]
+  nombre varchar(30)
+  apellido varchar(30)
+  documento integer
+  direccion varchar(255)
+  tipo_doc_id integer [ref: > Tipo_Doc.tipo_doc_id]
+  telefono varchar(20)
+  email varchar(40)
+  es_juridica boolean
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
 }
 
 Table Cargo {
@@ -49,7 +44,20 @@ Table Cliente {
   cliente_id integer [pk, increment]
   sit_econ_id integer [ref: > Situacion_Econ.situacion_econ_id]
   ingresos_dec integer
-  persona_id integer [unique, ref: - Persona.persona_id]
+  nombre varchar(30)
+  apellido varchar(30)
+  documento integer
+  direccion varchar(255)
+  tipo_doc_id integer [ref: > Tipo_Doc.tipo_doc_id]
+  telefono varchar(20)
+  email varchar(40)
+  es_juridica boolean
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
   checks {
     `ingresos_dec >= 0` [name: 'check_ingresos_dec']
   }
@@ -71,7 +79,20 @@ Table Situacion_Econ {
 Table Garante {
   garante_id integer [pk, increment]
   relacion_cliente varchar(255)
-  persona_id integer [unique, ref: - Persona.persona_id]
+  nombre varchar(30)
+  apellido varchar(30)
+  documento integer
+  direccion varchar(255)
+  tipo_doc_id integer [ref: > Tipo_Doc.tipo_doc_id]
+  telefono varchar(20)
+  email varchar(40)
+  es_juridica boolean
+  habilitado boolean [default: 'TRUE']
+  fecha_alta date [default: 'GETDATE()']
+  fecha_baja date
+  fecha_mod date
+  usuario_alta varchar(30)
+  usuario_mod varchar(30)
 }
 
 Table Sucursal {
