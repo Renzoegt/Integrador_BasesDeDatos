@@ -1,5 +1,5 @@
-
 USE creditos;
+
 -- Vista para gestionar clientes (información completa necesaria para atención)
 CREATE OR REPLACE VIEW vista_clientes_sucursal AS
 SELECT 

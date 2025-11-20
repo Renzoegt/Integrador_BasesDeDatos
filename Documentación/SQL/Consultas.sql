@@ -1,3 +1,5 @@
+USE creditos;
+
 -- Los tres usuarios creados fueron un administrador, un empleado de la sucursal y el analista de riesgo, que es el que se encuentra en el área de evaluación crediticia.
 CREATE USER 'administrador'@'%' IDENTIFIED BY '@Admin1234';
 CREATE USER 'empleado_sucursal'@'%' IDENTIFIED BY '@Empleado1234';
