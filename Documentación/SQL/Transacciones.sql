@@ -1,3 +1,5 @@
+USE creditos;
+
 DELIMITER $$
 
 CREATE PROCEDURE creditos.aprobar_solicitud_completa(
