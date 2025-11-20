@@ -50,9 +50,9 @@ TO 'analista_riesgo'@'%';
 
 -- En mariaDB no se utiliza "FLUSH PRIVILEGES;" para aplicar los permisos a los usuarios.
 
--- Este índice permite encontrar los datos de una persona introduciendo su número de documento. El impacto que genera es que acelera la identificación de personas por DNI evitando recorrer toda la tabla.
+-- Este índice permite encontrar los datos de un cliente introduciendo su número de documento. El impacto que genera es que acelera la identificación de personas por DNI evitando recorrer toda la tabla.
 CREATE INDEX idx_persona_documento
-ON Persona (documento);
+ON Cliente (documento);
 
 
 -- Este índice permite buscar rápidamente todas las solicitudes asociadas a un cliente. Su impacto es que facilita generar reportes, revisar historial de solicitudes y el análisis riesgo (que analiza la actividad crediticia por cliente).
