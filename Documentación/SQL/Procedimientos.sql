@@ -1,0 +1,5 @@
+USE creditos;
+
+DELIMITER $$
+
+END$$
