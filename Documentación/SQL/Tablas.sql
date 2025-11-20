@@ -2,25 +2,6 @@ CREATE DATABASE creditos;
 
 USE creditos;
 
-CREATE TABLE `Persona`
-(
-    `persona_id`   integer PRIMARY KEY AUTO_INCREMENT,
-    `nombre`       varchar(30),
-    `apellido`     varchar(30),
-    `documento`    integer UNIQUE,
-    `direccion`    varchar(255),
-    `tipo_doc_id`  integer,
-    `telefono`     varchar(20),
-    `email`        varchar(40),
-    `es_juridica`  boolean,
-    `habilitado`   boolean DEFAULT TRUE,
-    `fecha_alta`   date    DEFAULT CURDATE(),
-    `fecha_baja`   date,
-    `fecha_mod`    date,
-    `usuario_alta` varchar(30),
-    `usuario_mod`  varchar(30)
-);
-
 CREATE TABLE `Tipo_Doc`
 (
     `tipo_doc_id`  integer PRIMARY KEY AUTO_INCREMENT,
@@ -38,7 +19,20 @@ CREATE TABLE `Empleado`
     `empleado_id` integer PRIMARY KEY AUTO_INCREMENT,
     `sucursal_id` integer,
     `cargo_id`    integer,
-    `persona_id`  integer UNIQUE
+    `nombre`       varchar(30),
+    `apellido`     varchar(30),
+    `documento`    integer UNIQUE,
+    `direccion`    varchar(255),
+    `tipo_doc_id`  integer,
+    `telefono`     varchar(20),
+    `email`        varchar(40),
+    `es_juridica`  boolean,
+    `habilitado`   boolean DEFAULT TRUE,
+    `fecha_alta`   date    DEFAULT CURDATE(),
+    `fecha_baja`   date,
+    `fecha_mod`    date,
+    `usuario_alta` varchar(30),
+    `usuario_mod`  varchar(30)
 );
 
 CREATE TABLE `Cargo`
@@ -58,7 +52,20 @@ CREATE TABLE `Cliente`
     `cliente_id`   integer PRIMARY KEY AUTO_INCREMENT,
     `sit_econ_id`  integer,
     `ingresos_dec` integer,
-    `persona_id`   integer UNIQUE,
+    `nombre`       varchar(30),
+    `apellido`     varchar(30),
+    `documento`    integer UNIQUE,
+    `direccion`    varchar(255),
+    `tipo_doc_id`  integer,
+    `telefono`     varchar(20),
+    `email`        varchar(40),
+    `es_juridica`  boolean,
+    `habilitado`   boolean DEFAULT TRUE,
+    `fecha_alta`   date    DEFAULT CURDATE(),
+    `fecha_baja`   date,
+    `fecha_mod`    date,
+    `usuario_alta` varchar(30),
+    `usuario_mod`  varchar(30),
     CONSTRAINT `check_ingresos_dec` CHECK (ingresos_dec >= 0)
 );
 
@@ -80,7 +87,20 @@ CREATE TABLE `Garante`
 (
     `garante_id`       integer PRIMARY KEY AUTO_INCREMENT,
     `relacion_cliente` varchar(255),
-    `persona_id`       integer UNIQUE
+    `nombre`       varchar(30),
+    `apellido`     varchar(30),
+    `documento`    integer UNIQUE,
+    `direccion`    varchar(255),
+    `tipo_doc_id`  integer,
+    `telefono`     varchar(20),
+    `email`        varchar(40),
+    `es_juridica`  boolean,
+    `habilitado`   boolean DEFAULT TRUE,
+    `fecha_alta`   date    DEFAULT CURDATE(),
+    `fecha_baja`   date,
+    `fecha_mod`    date,
+    `usuario_alta` varchar(30),
+    `usuario_mod`  varchar(30)
 );
 
 CREATE TABLE `Sucursal`
@@ -281,9 +301,6 @@ CREATE TABLE `Campania_Producto`
     `producto_finan_id`    integer
 );
 
-ALTER TABLE `Persona`
-    ADD FOREIGN KEY (`tipo_doc_id`) REFERENCES `Tipo_Doc` (`tipo_doc_id`);
-
 ALTER TABLE `Empleado`
     ADD FOREIGN KEY (`sucursal_id`) REFERENCES `Sucursal` (`sucursal_id`);
 
@@ -291,16 +308,16 @@ ALTER TABLE `Empleado`
     ADD FOREIGN KEY (`cargo_id`) REFERENCES `Cargo` (`cargo_id`);
 
 ALTER TABLE `Empleado`
-    ADD FOREIGN KEY (`persona_id`) REFERENCES `Persona` (`persona_id`);
+    ADD FOREIGN KEY (`tipo_doc_id`) REFERENCES `Tipo_Doc` (`tipo_doc_id`);
 
 ALTER TABLE `Cliente`
     ADD FOREIGN KEY (`sit_econ_id`) REFERENCES `Situacion_Econ` (`situacion_econ_id`);
 
 ALTER TABLE `Cliente`
-    ADD FOREIGN KEY (`persona_id`) REFERENCES `Persona` (`persona_id`);
+    ADD FOREIGN KEY (`tipo_doc_id`) REFERENCES `Tipo_Doc` (`tipo_doc_id`);
 
 ALTER TABLE `Garante`
-    ADD FOREIGN KEY (`persona_id`) REFERENCES `Persona` (`persona_id`);
+    ADD FOREIGN KEY (`tipo_doc_id`) REFERENCES `Tipo_Doc` (`tipo_doc_id`);
 
 ALTER TABLE `Solicitud`
     ADD FOREIGN KEY (`cliente_id`) REFERENCES `Cliente` (`cliente_id`);
@@ -383,7 +400,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE TRIGGER credito_check_plazo_insert -- Check para setear el plazo en dias del credito
+CREATE TRIGGER credito_check_plazo_update -- Check para setear el plazo en dias del credito
     BEFORE UPDATE
     ON credito
     FOR EACH ROW
